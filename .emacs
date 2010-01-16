@@ -85,5 +85,8 @@
 ;; Load Gentoo-installed packages
 (load "/usr/share/emacs/site-lisp/site-gentoo")
 
+;; Use SBCL for Lisp
+(setq inferior-lisp-program "/usr/bin/env sbcl --noinform")
+
 ;; Start server for client usage
 (server-start)
