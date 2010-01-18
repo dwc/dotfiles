@@ -1,0 +1,10 @@
+# python -c "from spambayes.Options import options; print options.display_full()" | less
+
+[Storage]
+persistent_storage_file = ~/.spambayes/hammie.db
+persistent_use_database = pickle
+
+[Headers]
+header_score_digits = 4
+include_evidence = True
+include_score = True

@@ -1,0 +1,490 @@
+MAILDIR=$HOME/Mail
+DEFAULT=$MAILDIR/Inbox
+SPAM_FOLDER=$MAILDIR/Spam
+FORMAIL=/usr/bin/formail
+SPAMBAYES=/usr/bin/sb_filter.py
+SPAMASSASSIN=/usr/bin/spamassassin
+#LOGFILE=$HOME/.procmaillog
+#LOGABSTRACT=yes
+#VERBOSE=yes
+
+ Pipe all mail through SpamBayes
+:0fw: spambayes.lock
+| $SPAMBAYES
+
+# Pipe all mail through SpamAssassin
+#:0fw: spamassassin.lock
+#| $SPAMASSASSIN
+
+# All mail tagged as spam (except Pobox discard reports) is moved to the spam folder
+:0
+* ^(X-Spam-Status: Yes|X-Spambayes-Classification: spam)
+* !^From:.*Pobox Discard Report <discard-report@pobox\.com>
+$SPAM_FOLDER/
+
+# Catch duplicates using formail
+#:0Whc: .msgid.lock
+#| $FORMAIL -D 16384 .msgid.cache
+#
+#:0a
+#$MAILDIR/Duplicates/
+
+# Workaround for procmail bug: any output on stderr will cause the "F" in
+# "From" to be dropped.  This will add it back in.
+:0
+* ^^rom[ ]
+{
+  LOG="*** Dropped F off From_ header! Fixing up."
+
+  :0 fhw
+  | sed -e '1s/^/F/'
+}
+
+
+##
+## Mailing list recipes
+##
+
+# ACM messages
+:0
+* (^TO_|^From:).*@(listserv.?|hq)\.acm\.org
+Lists/ACM/
+
+# Apple Developer Connection
+:0
+* ^From:.*Apple Developer Connection
+Lists/Apple\ Developer\ Connection/
+
+# Bugzilla Announcements mailing list
+:0
+* ^TO_announce@bugzilla\.org
+Lists/Bugzilla/Announcements/
+
+# csync2 Users mailing list
+:0
+* ^List-Id:.*csync2\.lists\.linbit\.com
+Lists/csync2/User/
+
+# EVDB API mailing list
+:0
+* ^TO_api-developers@(evdb|eventful)\.com
+Lists/EVDB/API/
+
+# Fink Announcements mailing list
+:0
+* ^List-Id:.*fink-announce\.lists\.sourceforge\.net
+Lists/Fink/Announcements/
+
+# Galeon Announcements mailing list
+:0
+* ^List-Id:.*galeon-announce\.lists\.sourceforge\.net
+Lists/Galeon/Announcements/
+
+# Galeon Development mailing list
+:0
+* ^List-Id:.*galeon-devel\.lists\.sourceforge\.net
+Lists/Galeon/Development/
+
+# Galeon User mailing list
+:0
+* ^List-Id:.*galeon-user\.lists\.sourceforge\.net
+Lists/Galeon/User/
+
+# GatorSearchTool Commits mailing list
+:0
+* ^List-Id:.*gatorsearchtool-cvs\.lists\.sourceforge\.net
+Lists/GatorSearchTool/Commits/
+
+# Gentoo Announcements mailing list
+:0
+* ^List-Id:.*gentoo-announce\.gentoo\.org
+Lists/Gentoo/Announcements/
+
+# Gentoo Bugzilla
+:0
+* ^From:.*bugzilla-daemon@gentoo\.org
+Lists/Gentoo/Bugs/
+
+# Gentoo Perl mailing list
+:0
+* List-Id:.*gentoo-perl\.gentoo\.org
+Lists/Gentoo/Perl/
+
+# GNOME Bugzilla
+:0
+* ^From:.*bugzilla-daemon@bugzilla\.gnome\.org
+Lists/GNOME/Bugs/
+
+# Mozilla Bugzilla
+:0
+* ^From:.*bugzilla-daemon@mozilla\.org
+Lists/Mozilla/Bugs/
+
+# AnnoCPAN
+:0
+* From:.*notices@annocpan\.org
+Lists/Perl/AnnoCPAN/
+
+# Catalyst mailing list
+:0
+* List-Id:.*catalyst\.lists\.(rawmode\.org|scsys\.co\.uk)
+Lists/Perl/Catalyst/
+
+# Catalyst Development mailing list
+:0
+* List-Id:.*catalyst-dev\.lists\.(rawmode\.org|scsys\.co\.uk)
+Lists/Perl/Catalyst/Development/
+
+# DBIx::Class mailing list
+:0
+* List-Id:.*dbix-class\.lists\.(rawmode\.org|scsys\.co\.uk)
+Lists/Perl/DBIx-Class/
+
+# Gainesville.pm mailing list
+:0
+* ^List-Id:.*gainesville-pm(\.mail)?\.pm\.org
+Lists/Perl/Gainesville.pm/
+
+# RT tickets
+:0
+* ^RT-Ticket:.*rt\.cpan\.org
+Lists/Perl/RT/
+
+# SQL::Translator mailing list
+:0
+* ^List-Id:.*sqlfairy-developers\.lists\.sourceforge\.net
+Lists/Perl/SQL-Translator/
+
+# Subversion Development mailing list
+:0
+* ^Delivered-To:.*mailing list dev@subversion\.tigris\.org
+Lists/Subversion/Development/
+
+# SVK Development mailing list
+:0
+* ^List-Id:.*svk-devel\.bestpractical\.com
+Lists/SVK/Development/
+
+# SVK User mailing list
+:0
+* ^List-Id:.*svk-users\.lists\.bestpractical\.com
+Lists/SVK/User/
+
+# WordPress Development News mailing list
+:0
+* ^TO_wp-dev-news@lists\.automattic\.com
+Lists/WordPress/News/
+
+##
+## End mailing list recipes
+##
+
+
+##
+## Work recipes
+##
+
+# Web Administration Basecamp
+:0
+* ^From:.*[^@]*@ufwebadmin\.(basecamphq|grouphub)\.com
+Work/Web\ Administration/Basecamp/
+
+# Web Administration Bugzilla
+:0
+* ^From:.*bugzilla-daemon@(bugs|dev)\.webadmin\.ufl\.edu
+Work/Web\ Administration/Bugs/
+
+# Web Administration Commits
+:0
+* ^Subject:.*(\[WebAdmin (CVS|SVN)\]|\[ufl-workflow\] r[0-9]+ committed)
+Work/Web\ Administration/Commits/
+
+# Net Sevices domain review
+:0
+* ^From:.*net-services@lists.ufl.edu
+* ^Subject:.*(Domain (Registration request for [^.]+\.|([^.]+\.)+[^.]+ attention required)|Domains in a Requested status that need to be actioned)
+Work/Web\ Administration/Domains/
+
+# UF Academic And Professional Assembly list
+:0
+* ^Return-Path:.*owner-ap-assembly-l@lists\.ifas\.ufl\.edu
+Work/Web\ Administration/Lists/Academic\ And\ Professional\ Assembly/
+
+# UF Approval Customers list
+:0
+* ^Return-Path:.*owner-approval-customer-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Approval\ Customers/
+
+# UF Calendar Working Group list
+:0
+* ^Return-Path:.*owner-calendar-wg-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Calendar\ Working\ Group/
+
+# UF Campus Computer Coordinators list
+:0
+* ^Return-Path:.*owner-ccc[^@]*@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Campus\ Computer\ Coordinators/
+
+# Central POSIX Services list
+:0
+* ^Return-Path:.*owner-central-posix-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Central\ POSIX\ Services/
+
+# CNS Hosting Customers list
+:0
+* ^Return-Path:.*owner-cns-hosting-customer-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/CNS\ Hosting\ Customers/
+
+# DDD list
+:0
+* ^Return-Path:.*owner-ddd-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/DDD/
+
+# UF InfoGator list
+:0
+* ^Return-Path:.*owner-infogator-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/InfoGator/
+
+# UF IT PR list
+:0
+* ^Return-Path:.*owner-itpr-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/IT\ PR/
+
+# UF LDAP Testers list
+:0
+* ^Return-Path:.*owner-ldap-testers-l[^@]*@lists\.ufl\.edu
+Work/Web\ Administration/Lists/LDAP\ Testers/
+
+# UF Linux list
+:0
+* ^Return-Path:.*owner-linux-l[^@]*@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Linux/
+
+# UF Net Managers list
+:0
+* ^Return-Path:.*owner-net-managers-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Net\ Managers/
+
+# UF TSM Administrators list
+:0
+* ^Return-Path:.*owner-nsam-admin-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/TSM\ Administrators/
+
+# UF Parking Information list
+:0
+* ^Return-Path:.*owner-parkinginfo-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Parking\ Information/
+
+# UF Retirement list
+:0
+* ^Return-Path:.*owner-retirement-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Retirement/
+
+# UF Shibboleth list
+:0
+* ^Return-Path:.*owner-shibboleth-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Shibboleth/
+
+# UF Shibboleth Announcements list
+:0
+* ^Return-Path:.*owner-shibboleth-announce-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Shibboleth\ Announcements/
+
+# UF Sick Leave Pool list
+:0
+* ^Return-Path:.*owner-sicklvpool-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Sick\ Leave\ Pool/
+
+# UF TEAMS Employees list
+:0
+* ^Return-Path:.*owner-teamsemp-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/TEAMS\ Employees/
+
+# UF TEAMS Professional list
+:0
+* ^Return-Path:.*owner-teamsprof-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/TEAMS\ Professional/
+
+# UF Crisis Team list
+:0
+* ^Return-Path:.*owner-ufcrisis-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/UF\ Crisis\ Team/
+
+# UF Daily News list
+:0
+* ^Return-Path:.*owner-ufnews-daily-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/UF\ Daily\ News/
+
+# UF Research News list
+:0
+* ^Return-Path:.*owner-ufnews-research-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/UF\ Research\ News/
+
+# UF Disaster Warning list
+:0
+* ^Return-Path:.*owner-uf-disaster-warning@lists\.ufl\.edu
+Work/Web\ Administration/Lists/UF\ Disaster\ Warning/
+
+# UF Employees list
+:0
+* ^Return-Path:.*owner-uf-employees-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Employees/
+
+# UF Purchasing Card Users list
+:0
+* ^Return-Path:.*owner-uf-pur-cd-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Purchasing\ Card\ Users/
+
+# Backup list
+:0
+* ^Return-Path:.*owner-webadmin-backup-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Backup/
+
+# Web Administration Development (place after bugs and commits)
+:0
+* ^Return-Path:.*owner-webadmin-dev-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Development/
+
+# Web Administration Staff list
+:0
+* ^Return-Path:.*owner-webadmin-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Staff/
+
+# Web Administration Search list
+:0
+* ^Return-Path:.*owner-webadmin-search-l@lists\.ufl\.edu
+* !^From:.*google@(google[ab]\.ns|google\.webadmin)\.ufl\.edu
+Work/Web\ Administration/Lists/Search/
+
+# UF Web Managers list
+:0
+* ^Return-Path:.*owner-web-managers-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Web\ Managers/
+
+# UF WordPress list
+:0
+* ^Return-Path:.*owner-wordpress-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/WordPress/
+
+# Paycheck notifications
+:0
+* ^From:.*paycheck-notification@ufl\.edu
+Work/Web\ Administration/Paychecks/
+
+# Google Enterprise spam
+:0
+* ^From:.*mini-sales@google\.com
+Work/Web\ Administration/Projects/Search/
+
+# Google Search Appliance notices
+:0
+* ^From:.*google@(google[ab]\.ns|google\.webadmin)\.ufl\.edu
+Work/Web\ Administration/System/Google/
+
+# Fail2Ban
+:0
+* ^From:.*root@(offsite\.webadmin|emergency)\.ufl\.edu
+* ^Subject:.*Fail2Ban
+Work/Web\ Administration/System/Fail2Ban/
+
+# Heartbeat
+:0
+* ^From:.*root@(offsite\.webadmin|emergency)\.ufl\.edu
+* ^Subject:.*Resource Group
+Work/Web\ Administration/System/Heartbeat/
+
+# LogWatch
+:0
+* ^From:.*logwatch@((dev|dwc)\.webadmin\.ufl\.edu|(offsite\.webadmin|emergency)\.ufl\.edu)
+Work/Web\ Administration/System/LogWatch/
+
+# Nagios notifications
+:0
+* ^From:.*nsbot@[^.]+.hna\.ns\.ufl\.edu
+{
+#  :0c
+#  ! 3528718206@tmomail.net
+
+  :0
+  Work/Web\ Administration/System/Nagios/
+}
+
+# Pingdom
+:0
+* ^From:.*support@pingdom\.com
+* ^Subject:.*Pingdom Monthly Report
+Work/Web\ Administration/System/Pingdom/
+
+:0
+* ^From:.*alert@pingdom\.com
+Work/Web\ Administration/System/Pingdom/
+
+# Backup logs
+:0
+* ^Subject:.*Cron.*backup
+* ^From:.*ufl\.edu
+Work/Web\ Administration/Lists/Backup/
+
+# Cron emails
+:0
+* ^Subject:.*Cron
+* ^From:.*ufl\.edu
+Work/Web\ Administration/System/
+
+# Al's crap (after everything else)
+:0
+* ^From:.*(akirby@ufl\.edu|al\.kirby@gmail\.com)
+Work/Web\ Administration/Al\ Kirby/
+
+##
+## End work recipes
+##
+
+
+##
+## Podbop receipes
+##
+
+# URL check results
+:0
+* ^Subject:.*Podbop URL Check
+Personal/Podbop/
+
+##
+## End Podbop recipes
+##
+
+
+##
+## Other recipes
+##
+
+# Backup logs
+:0
+* ^Subject:.*Cron.*backup
+* ^From:.*root@fortuna\.dwc\.homedns\.org
+System/Backup/
+
+# LogWatch
+:0
+* ^From:.*logwatch@((fortuna\.)?dwc\.homedns\.org|danieltwc\.com)
+System/LogWatch/
+
+# All remaining cron emails
+:0
+* ^From:.*Cron Daemon
+System/
+
+# Google Voice
+:0
+* ^From:.*voice-noreply@google\.com
+* ^Subject:.*New Voicemail
+Personal/Voicemail/
+
+# All the rest of our mail will be delivered to the default mailbox
+:0
+$DEFAULT/
+
+##
+## End other recipes
+##

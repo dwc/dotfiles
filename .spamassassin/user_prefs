@@ -1,0 +1,34 @@
+# How many hits before a message is considered spam.
+required_hits           5.0
+
+# Whether to change the subject of suspected spam
+rewrite_subject         0
+
+# Text to prepend to subject if rewrite_subject is used
+subject_tag             *****SPAM*****
+
+# Encapsulate spam in an attachment
+report_safe             0
+
+# Use terse version of the spam report
+use_terse_report        0
+
+# Enable the Bayes system
+use_bayes               1
+
+# Enable Bayes auto-learning
+auto_learn              1
+
+# Enable or disable network checks
+skip_rbl_checks         1
+use_razor2              0
+use_dcc                 0
+use_pyzor               0
+
+# Mail using languages used in these country codes will not be marked
+# as being possibly spam in a foreign language.
+ok_languages            all
+
+# Mail using locales used in these country codes will not be marked
+# as being possibly spam in a foreign language.
+ok_locales              all
