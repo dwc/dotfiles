@@ -1,0 +1,33 @@
+color attachment  yellow default
+color hdrdefault  cyan default
+color indicator   black cyan
+color markers     red default
+color quoted      green default
+color quoted1     yellow default
+color quoted2     red default
+color quoted3     green default
+color quoted4     cyan default
+color quoted5     yellow default
+color quoted6     red default
+color quoted7     green default
+color signature   cyan default
+color status      brightgreen blue
+color tilde       blue default
+color tree        red default
+
+color header      green default ^From:
+color header      green default ^Reply-To:
+color header      yellow default ^To:
+color header      yellow default ^Cc:
+color header      cyan default ^Subject:
+color header      green default ^Date:
+color header      yellow default ^X-Spam.*:
+
+color body        red default "[[:alnum:]][-+.#_[:alnum:]]*@[-+.[:alnum:]]*[[:alnum:]]"
+color body        magenta default "(https?|ftp)://[\-\+\.,;/%~_:?&=\#a-zA-Z0-9]+"
+
+color index       yellow default ~N  # New
+color index       green default ~O  # Old
+
+color index       red default "~h '^X-Spambayes-Classification: spam'"
+#color index       green default "~h '^X-Spambayes-Classification: unsure'"

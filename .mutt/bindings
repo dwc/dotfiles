@@ -1,0 +1,24 @@
+# Miscellaneous keybindings
+bind editor <delete> delete-char
+
+# Navigation
+macro index <tab> "<change-folder>?" "display list of mailboxes"
+
+# Fetch new mail
+macro generic G "<shell-escape>fetchmail<return>" "check for new mail"
+
+# Train SpamBayes on unclassified messages and run them through procmail again
+macro index,pager S "<pipe-message>sb_filter.py -s -f | procmail<return><delete-message>" "retrain SpamBayes on message as spam"
+macro index,pager H "<pipe-message>sb_filter.py -g -f | procmail<return><delete-message>" "retrain SpamBayes on message as ham"
+
+# Search using nmzmail
+macro generic <esc>f "<shell-escape>nmzmail<return><esc><change-folder>~/.nmzmail/result<return>" "search using nmzmail"
+
+# Profile key bindings
+macro generic,pager <f6> "<enter-command>source ~/.mutt/profile\n" "load default profile"
+macro generic,pager <f7> "<enter-command>source ~/.mutt/profiles/dwc@pobox.com\n" "load profile: dwc@pobox.com"
+macro generic,pager <f8> "<enter-command>source ~/.mutt/profiles/dwc@ufl.edu\n" "load profile: dwc@ufl.edu"
+macro generic,pager <f9> "<enter-command>source ~/.mutt/profiles/dwc@acceleration.net\n" "load profile: dwc@acceleration.net"
+macro generic,pager <f10> "<enter-command>source ~/.mutt/profiles/daniel@acceleration.net\n" "load profile: daniel@acceleration.net"
+macro generic,pager <f11> "<enter-command>source ~/.mutt/profiles/daniel@podbop.org\n" "load profile: daniel@podbop.org"
+macro generic,pager <f12> "<enter-command>source ~/.mutt/profiles/afn41511@afn.org\n" "load profile: afn41511@afn.org"

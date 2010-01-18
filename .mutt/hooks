@@ -1,0 +1,56 @@
+# This file contains hooks to set the From: header to something appropriate 
+# for the folder I'm in, and also to set signatures and PGP settings according 
+# to the folder
+
+folder-hook . source ~/.mutt/profile
+folder-hook . set pgp_autosign
+folder-hook . unmy_hdr Reply-To:
+folder-hook Lists/Bugzilla/Announcements source ~/.mutt/profiles/daniel@acceleration.net
+folder-hook Lists/Bugzilla/Announcements unset pgp_autosign
+folder-hook Lists/EVDB/API source ~/.mutt/profiles/daniel@acceleration.net
+folder-hook Lists/EVDB/API unset pgp_autosign
+folder-hook Lists/Fink/Announcements source ~/.mutt/profiles/danieltwc@users.sourceforge.net
+folder-hook Lists/Fink/Announcements unset pgp_autosign
+folder-hook Lists/Galeon/Announcements source ~/.mutt/profiles/danieltwc@users.sourceforge.net
+folder-hook Lists/Galeon/Announcements unset pgp_autosign
+folder-hook Lists/Galeon/Development source ~/.mutt/profiles/danieltwc@users.sourceforge.net
+folder-hook Lists/Galeon/Development unset pgp_autosign
+folder-hook Lists/Galeon/User source ~/.mutt/profiles/danieltwc@users.sourceforge.net
+folder-hook Lists/Galeon/User unset pgp_autosign
+folder-hook Lists/GatorSearchTool/Commits source ~/.mutt/profiles/danieltwc@users.sourceforge.net
+folder-hook Lists/GatorSearchTool/Commits unset pgp_autosign
+folder-hook Lists/Gentoo/Announcements source ~/.mutt/profiles/daniel@acceleration.net
+folder-hook Lists/Gentoo/Announcements unset pgp_autosign
+folder-hook Lists/Gentoo/Bugs source ~/.mutt/profiles/daniel@acceleration.net
+folder-hook Lists/Gentoo/Bugs unset pgp_autosign
+folder-hook Lists/Gentoo/Perl source ~/.mutt/profiles/daniel@acceleration.net
+folder-hook Lists/Gentoo/Perl unset pgp_autosign
+folder-hook Lists/GNOME/Bugs source ~/.mutt/profiles/daniel@acceleration.net
+folder-hook Lists/GNOME/Bugs unset pgp_autosign
+folder-hook Lists/Mozilla/Bugs source ~/.mutt/profiles/daniel@acceleration.net
+folder-hook Lists/Mozilla/Bugs unset pgp_autosign
+folder-hook Lists/Perl/Catalyst source ~/.mutt/profiles/dwc@pobox.com
+folder-hook Lists/Perl/Catalyst unset pgp_autosign
+folder-hook Lists/Perl/Catalyst/Development source ~/.mutt/profiles/dwc@pobox.com
+folder-hook Lists/Perl/Catalyst/Development unset pgp_autosign
+folder-hook Lists/Perl/DBIx-Class source ~/.mutt/profiles/dwc@pobox.com
+folder-hook Lists/Perl/DBIx-Class unset pgp_autosign
+folder-hook Lists/Perl/Gainesville.pm source ~/.mutt/profiles/daniel@acceleration.net
+folder-hook Lists/Perl/Gainesville.pm unset pgp_autosign
+folder-hook Lists/Perl/SQL-Translator source ~/.mutt/profiles/danieltwc@users.sourceforge.net
+folder-hook Lists/Perl/SQL-Translator unset pgp_autosign
+folder-hook Lists/Subversion/Bugs source ~/.mutt/profiles/dwc@tigris.org
+folder-hook Lists/Subversion/Bugs unset pgp_autosign
+folder-hook Lists/Subversion/Development source ~/.mutt/profiles/dwc@tigris.org
+folder-hook Lists/Subversion/Development unset pgp_autosign
+folder-hook Personal/Podbop source ~/.mutt/profiles/daniel@podbop.org
+folder-hook Personal/Podbop unset pgp_autosign
+folder-hook Work/Web\ Administration.* source ~/.mutt/profiles/dwc@ufl.edu
+folder-hook Work/Web\ Administration.* set pgp_autosign
+folder-hook Work/Web\ Administration/Webmaster my_hdr Reply-To: webmaster@ufl.edu
+
+# Set the polling parameters to sane values for local folders versus IMAP folders
+folder-hook . set mail_check=5
+folder-hook . set timeout=5
+folder-hook imaps://* set mail_check=600
+folder-hook imaps://* set timeout=0

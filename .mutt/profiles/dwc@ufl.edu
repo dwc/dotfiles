@@ -1,0 +1,16 @@
+# Mutt sender profile: dwc@ufl.edu
+
+# Sending options
+set from="dwc@ufl.edu"
+set realname="Daniel Westermann-Clark"
+
+# Signature file
+set signature='~/.mutt/signatures/dwc@ufl.edu'
+
+# Customized headers
+#unmy_hdr *                      # Remove all extra headers first
+#my_hdr From: Daniel Westermann-Clark <dwc@ufl.edu>
+#my_hdr Reply-To: Daniel Westermann-Clark <dwc@ufl.edu>
+
+# Include the profile name in the status line
+set status_format="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)---dwc@ufl.edu-%>-(%P)---"
