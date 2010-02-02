@@ -1,0 +1,1 @@
+$_REPL->load_plugin($_) for qw/Colors Timing/;
