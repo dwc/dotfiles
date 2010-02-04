@@ -31,15 +31,6 @@ if [ "$(hostname -s)" == "li3-126" ]; then
     fi
 fi
 
-# Firefox speedup
-if [ -d ~/.mozilla/firefox ] && which sqlite3 > /dev/null && ! pgrep -u $USER firefox > /dev/null; then
-    for profile in $(find ~/.mozilla/firefox -mindepth 1 -maxdepth 1 -type d); do
-        for db in "$profile"/*.sqlite; do
-            sqlite3 "$db" 'VACUUM;'
-        done
-    done
-fi
-
 export EDITOR=emacsclient
 export ALTERNATE_EDITOR=emacs
 
