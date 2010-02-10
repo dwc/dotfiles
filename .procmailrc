@@ -335,6 +335,11 @@ Work/Web\ Administration/Lists/Employees/
 * ^Return-Path:.*owner-uf-pur-cd-l@lists\.ufl\.edu
 Work/Web\ Administration/Lists/Purchasing\ Card\ Users/
 
+# VPN list
+:0
+* ^Return-Path:.*owner-vpn-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/VPN/
+
 # Backup list
 :0
 * ^Return-Path:.*owner-webadmin-backup-l@lists\.ufl\.edu
