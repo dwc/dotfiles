@@ -1,0 +1,24 @@
+## Clamz configuration file
+
+## Default format for output filenames.  This may contain any of
+## the following variables:
+##
+##  ${title} ${creator} ${album} ${tracknum} ${album_artist}
+##  ${genre} ${discnum} ${suffix} ${asin} ${album_asin}
+##  ${amz_title} ${amz_creator} ${amz_asin} ${amz_genre}
+##
+## The name format may also contain slashes, if you'd like to
+## categorize your files in subdirectories.
+NameFormat       "${album_artist}/${album}/${tracknum} - ${title}.${suffix}"
+
+## Set to True to allow uppercase in filenames.
+## False to convert to lowercase.
+AllowUppercase   True
+
+## Set to True to output UTF-8 filenames, False to output ASCII only,
+## UseLocale to check the system locale setting.
+AllowUTF8        UseLocale
+
+## The set of ASCII characters which are disallowed.  (Control
+## characters and slashes are always disallowed.)
+ForbidChars      "!\"$*:;<>?\\`|~"
