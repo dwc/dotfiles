@@ -189,16 +189,6 @@ Lists/WordPress/News/
 * ^From:.*[^@]*@ufwebadmin\.(basecamphq|grouphub)\.com
 Work/Web\ Administration/Basecamp/
 
-# Web Administration Bugzilla
-:0
-* ^From:.*bugzilla-daemon@(bugs|dev)\.webadmin\.ufl\.edu
-Work/Web\ Administration/Bugs/
-
-# Web Administration Commits
-:0
-* ^Subject:.*(\[WebAdmin (CVS|SVN)\]|\[ufl-workflow\] r[0-9]+ committed)
-Work/Web\ Administration/Commits/
-
 # Net Sevices domain review
 :0
 * ^From:.*net-services@lists.ufl.edu
@@ -335,17 +325,22 @@ Work/Web\ Administration/Lists/Employees/
 * ^Return-Path:.*owner-uf-pur-cd-l@lists\.ufl\.edu
 Work/Web\ Administration/Lists/Purchasing\ Card\ Users/
 
-# VPN list
+# UF VPN list
 :0
 * ^Return-Path:.*owner-vpn-l@lists\.ufl\.edu
 Work/Web\ Administration/Lists/VPN/
 
-# Backup list
+# Web Administration Backup list
 :0
 * ^Return-Path:.*owner-webadmin-backup-l@lists\.ufl\.edu
 Work/Web\ Administration/Lists/Backup/
 
-# Web Administration Development (place after bugs and commits)
+# Web Administration Commits list
+:0
+* ^Return-Path:.*owner-webadmin-commits-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Commits/
+
+# Web Administration Development list
 :0
 * ^Return-Path:.*owner-webadmin-dev-l@lists\.ufl\.edu
 Work/Web\ Administration/Lists/Development/
