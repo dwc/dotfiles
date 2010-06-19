@@ -84,7 +84,7 @@ psgrep() {
 }
 
 backup() {
-    sudo -H /root/cvs/personal/projects/backup/"$@"
+    sudo -H /root/backup-scripts/"$@"
 }
 
 mwget() {
