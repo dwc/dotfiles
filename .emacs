@@ -1,3 +1,8 @@
+;; From http://emacs-fu.blogspot.com/2008/12/using-packages-functions-only-if-they.html
+(defmacro require-maybe (feature &optional file)
+  "*Try to require FEATURE, but don't signal an error if `require' fails."
+  `(require ,feature ,file 'noerror))
+
 ;; Are we running XEmacs or Emacs?
 (defvar running-xemacs (string-match "XEmacs\\|Lucid" emacs-version))
 
@@ -82,8 +87,8 @@
           '(lambda ()
              (setq indent-tabs-mode t)))
 
-;; Load Gentoo-installed packages
-(load "/usr/share/emacs/site-lisp/site-gentoo")
+;; Load Gentoo-installed packages if available
+(require-maybe 'site-gentoo)
 
 ;; Use SBCL for Lisp
 (setq inferior-lisp-program "/usr/bin/env sbcl --noinform")
