@@ -4,7 +4,10 @@
 if [ "$PS1" ]; then
     # Colors for ls, etc.
     if [ -x "$(which dircolors)" ]; then
-        eval `dircolors -b /etc/DIR_COLORS`
+        if [ -f /etc/DIR_COLORS ]; then
+            eval `dircolors -b /etc/DIR_COLORS`
+        fi
+
         alias d='ls --color'
         alias ls='ls --color'
         alias ll='ls --color -l'
