@@ -3,6 +3,9 @@
   "*Try to require FEATURE, but don't signal an error if `require' fails."
   `(require ,feature ,file 'noerror))
 
+;; Load Gentoo-installed packages if available
+(require-maybe 'site-gentoo)
+
 ;; Are we running XEmacs or Emacs?
 (defvar running-xemacs (string-match "XEmacs\\|Lucid" emacs-version))
 
@@ -12,9 +15,16 @@
 (global-set-key [delete] 'delete-char)
 (global-set-key [kp-delete] 'delete-char)
 
+;; XEmacs has spoiled me
+(global-set-key "\M-g" 'goto-line)
+
 ;; Turn on font-lock mode for Emacs
 (cond ((not running-xemacs)
        (global-font-lock-mode t)))
+
+;; Enable wheelmouse support by default
+(cond (window-system
+       (mwheel-install)))
 
 ;; Add the hostname to the frame title
 (setq frame-title-format `(, (user-login-name) "@", (system-name) ": " (buffer-file-name "%f" (dired-directory dired-directory "%b"))))
@@ -22,19 +32,13 @@
 ;; Visual feedback on selections
 (setq-default transient-mark-mode t)
 
-;; Always end a file with a newline
-(setq require-final-newline t)
-
-;; Stop at the end of the file, not just add lines
-(setq next-line-add-newlines nil)
-
-;; Enable wheelmouse support by default
-(cond (window-system
-       (mwheel-install)))
+;; Better newline behavior at end of files
+(setq require-final-newline t
+      next-line-add-newlines nil)
 
 ;; Turn off the startup message
-(setq inhibit-startup-message t)
-(setq inhibit-startup-echo-area-message t)
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
 
 ;; Use aspell instead of ispell
 (setq-default ispell-program-name "/usr/bin/aspell")
@@ -42,17 +46,19 @@
 ;; Use unified context diffs
 (setq diff-switches "-u")
 
-;; Sensible defaults
-(setq line-number-mode t)
-(setq column-number-mode t)
-(setq-default indent-tabs-mode nil)
-(setq-default indicate-empty-lines t)
-(setq compilation-window-height 20)
-(setq user-mail-address "dwc@pobox.com")
-(setq query-user-mail-address nil)
+;; Use SBCL for Lisp
+(setq inferior-lisp-program "/usr/bin/env sbcl --noinform")
 
-;; XEmacs has spoiled me
-(global-set-key "\M-g" 'goto-line)
+;; Don't bother me about my email address
+(setq user-mail-address "dwc@pobox.com"
+      query-user-mail-address nil)
+
+;; Sensible defaults
+(setq-default indent-tabs-mode nil
+              indicate-empty-lines t)
+(setq line-number-mode t
+      column-number-mode t
+      compilation-window-height 20)
 
 ;; Customizations
 (add-to-list 'load-path "~/.emacs.d")
@@ -86,12 +92,6 @@
 (add-hook 'php-mode-hook
           '(lambda ()
              (setq indent-tabs-mode t)))
-
-;; Load Gentoo-installed packages if available
-(require-maybe 'site-gentoo)
-
-;; Use SBCL for Lisp
-(setq inferior-lisp-program "/usr/bin/env sbcl --noinform")
 
 ;; Start server for client usage
 (server-start)
