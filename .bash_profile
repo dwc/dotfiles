@@ -5,6 +5,9 @@
 # Fink
 [ -f /sw/bin/init.sh ] && source /sw/bin/init.sh
 
+# MacPorts
+[ -d /opt/local/bin ] && export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
 # Perl
 if [ -d "$HOME/local" ]; then
     export PATH=$HOME/local/bin:$PATH
