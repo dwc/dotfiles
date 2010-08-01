@@ -2,11 +2,11 @@
 
 [ -f ~/.bashrc ] && source ~/.bashrc
 
-# Fink
-[ -f /sw/bin/init.sh ] && source /sw/bin/init.sh
-
 # MacPorts
-[ -d /opt/local/bin ] && export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+if [ -d /opt/local/bin ]; then
+    export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+    export MANPATH=/opt/local/share/man:$MANPATH
+fi
 
 # Perl
 if [ -d "$HOME/local" ]; then
