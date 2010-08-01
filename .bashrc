@@ -23,7 +23,7 @@ if [ "$PS1" ]; then
     alias portagemon='DISTCC_DIR=$(portageq envvar DISTCC_DIR) distccmon-text'
 
     # Stupid w
-    if [ $OSTYPE != "darwin8.0" ]; then
+    if [[ $OSTYPE != darwin* ]]; then
         alias w='w -f'
     fi
 
