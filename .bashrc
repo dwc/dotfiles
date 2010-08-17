@@ -16,11 +16,8 @@ if [ "$PS1" ]; then
         alias ll='ls -l'
     fi
 
-    # reattach by default
+    # Reattach by default
     alias screen='screen -Rd'
-
-    # distcc monitor for portage
-    alias portagemon='DISTCC_DIR=$(portageq envvar DISTCC_DIR) distccmon-text'
 
     # Stupid w
     if [[ $OSTYPE != darwin* ]]; then
@@ -33,17 +30,17 @@ if [ "$PS1" ]; then
     # Use Gist by default for nopaste
     alias nopaste='nopaste --services Gist'
 
+    # Git configuration file management
+    # http://necoro.wordpress.com/2009/10/08/managing-your-configuration-files-with-git-and-stgit/
+    # http://necoro.wordpress.com/2009/10/10/managing-your-configuration-files-with-git-revisited/
+    alias dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
+
     # DB2 shortcuts
     alias db2env='source ~db2inst1/sqllib/db2profile'
     alias db2connect='db2env && db2 connect to public user'
     alias db2conn='db2connect'
     alias db2disconnect='db2env && db2 disconnect all'
     alias db2disc='db2disconnect'
-
-    # Git configuration file management
-    # http://necoro.wordpress.com/2009/10/08/managing-your-configuration-files-with-git-and-stgit/
-    # http://necoro.wordpress.com/2009/10/10/managing-your-configuration-files-with-git-revisited/
-    alias dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
     # Set a fancy prompt
     COLOR=""
