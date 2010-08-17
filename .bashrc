@@ -30,6 +30,9 @@ if [ "$PS1" ]; then
     # Epoch => local time
     alias localtime='perl -le "print scalar localtime \$_ for @ARGV;"'
 
+    # Use Gist by default for nopaste
+    alias nopaste='nopaste --services Gist'
+
     # DB2 shortcuts
     alias db2env='source ~db2inst1/sqllib/db2profile'
     alias db2connect='db2env && db2 connect to public user'
