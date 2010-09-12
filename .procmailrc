@@ -441,11 +441,6 @@ Work/Web\ Administration/Lists/Backup/
 * ^From:.*ufl\.edu
 Work/Web\ Administration/System/
 
-# Al's crap (after everything else)
-:0
-* ^From:.*(akirby@ufl\.edu|al\.kirby@gmail\.com)
-Work/Web\ Administration/Al\ Kirby/
-
 ##
 ## End work recipes
 ##
