@@ -175,6 +175,11 @@ Lists/SVK/User/
 * ^TO_wp-dev-news@lists\.automattic\.com
 Lists/WordPress/News/
 
+# Gainesville Ultimate mailing list
+:0
+* ^List-Id:.*gainesvilleultimate\.yahoogroups\.com
+Personal/Ultimate/
+
 ##
 ## End mailing list recipes
 ##
