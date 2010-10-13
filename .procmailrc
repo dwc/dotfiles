@@ -371,6 +371,11 @@ Work/Web\ Administration/Lists/Search/
 * ^Return-Path:.*owner-web-managers-l@lists\.ufl\.edu
 Work/Web\ Administration/Lists/Web\ Managers/
 
+# Web Implementation Center list
+:0
+* ^Return-Path:.*owner-wic-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/WIC/
+
 # UF WordPress list
 :0
 * ^Return-Path:.*owner-wordpress-l@lists\.ufl\.edu
