@@ -189,9 +189,9 @@ Personal/Ultimate/
 ## Work recipes
 ##
 
-# Web Administration Basecamp
+# UF Basecamp instances
 :0
-* ^From:.*[^@]*@ufwebadmin\.(basecamphq|grouphub)\.com
+* ^From:.*[^@]*@(citt|ufwebadmin)\.(basecamphq|grouphub)\.com
 Work/Web\ Administration/Basecamp/
 
 # Net Sevices domain review
