@@ -497,7 +497,7 @@ System/
 
 # Facebook
 :0
-* ^From:.*notification[^@]+@facebookmail\.com
+* ^From:.*(notification|update)[^@]+@facebookmail\.com
 Personal/Facebook/
 
 # Google Voice
