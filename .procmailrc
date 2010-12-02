@@ -115,6 +115,11 @@ Lists/Gentoo/Perl/
 * ^From:.*bugzilla-daemon@bugzilla\.gnome\.org
 Lists/GNOME/Bugs/
 
+# iMobileU mailing list
+:0
+* List-Id:.*i-mobile-u\.mit\.edu
+Lists/iMobileU/
+
 # Mozilla Bugzilla
 :0
 * ^From:.*bugzilla-daemon@mozilla\.org
