@@ -6,6 +6,7 @@ if [[ $- != *i* ]]; then
     return
 fi
 
+[ -f /etc/bash/bashrc ] && source /etc/bash/bashrc
 [ -f /etc/profile.d/bash-completion ] && source /etc/profile.d/bash-completion
 
 # Set a fancy prompt
@@ -43,20 +44,6 @@ case $TERM in
         ;;
 esac
 
-# Colors for ls, etc.
-if [ -x "$(which dircolors)" ]; then
-    if [ -f /etc/DIR_COLORS ]; then
-        eval `dircolors -b /etc/DIR_COLORS`
-    fi
-
-    alias d='ls --color'
-    alias ls='ls --color'
-    alias ll='ls --color -l'
-else
-    alias d='ls'
-    alias ll='ls -l'
-fi
-
 # Reattach by default
 alias screen='screen -Rd'
 
@@ -82,6 +69,9 @@ alias db2connect='db2env && db2 connect to public user'
 alias db2conn='db2connect'
 alias db2disconnect='db2env && db2 disconnect all'
 alias db2disc='db2disconnect'
+
+# Other shortcuts
+alias ll='ls -l'
 
 psgrep() {
     if [ "$@" ]; then
