@@ -84,10 +84,3 @@ psgrep() {
 backup() {
     sudo -H /root/backup-scripts/"$@"
 }
-
-mwget() {
-    local url
-    for url in $@; do
-        wget -c "$url"
-    done
-}
