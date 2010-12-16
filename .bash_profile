@@ -1,4 +1,4 @@
-# This file is sourced by bash when you log in interactively.
+# This file is sourced by bash for login shells.
 
 [ -f ~/.bashrc ] && source ~/.bashrc
 
