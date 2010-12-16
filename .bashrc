@@ -21,11 +21,11 @@ case $(hostname -s) in
     dovinia)
         prompt_color="31"
         ;;
-    dulcinea)
-        prompt_color="36"
-        ;;
     fortuna)
         prompt_color="32"
+        ;;
+    li3-126)
+        prompt_color="36"
         ;;
 esac
 
