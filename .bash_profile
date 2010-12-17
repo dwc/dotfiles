@@ -1,7 +1,34 @@
 # This file is sourced by bash for login shells.
 
+# Used to start Fetchmail and OfflineIMAP
+function _start_unless_running() {
+    local nohup="$1"; shift
+    local pgrep_full="$1"; shift
+    local daemon="$1"; shift
+
+    local pgrep_args="-u $USER"
+    if [ ${pgrep_full} ]; then
+        pgrep_args="${pgrep_args} -f"
+    fi
+
+    if ! pgrep ${pgrep_args} ${daemon} > /dev/null; then
+        echo "Starting ${daemon}..."
+
+        if [ "${nohup}" == "1" ]; then
+            echo "nohup"
+            nohup ${daemon} $@ 2>&1 >> "$HOME/.${daemon}.log" &
+        else
+            echo "hup"
+            ${daemon} $@ &
+        fi
+    else
+        echo "${daemon} already exists"
+    fi
+}
+
 [ -f ~/.bashrc ] && source ~/.bashrc
 
+# Load in aliases, etc.
 # MacPorts
 if [ -d /opt/local/bin ]; then
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -23,15 +50,9 @@ fi
 
 # Fetchmail and OfflineIMAP
 if [ "$(hostname -s)" == "li3-126" ]; then
-    if ! pgrep -u $USER fetchmail > /dev/null; then
-        echo "Starting fetchmail..."
-        fetchmail -d 300
-    fi
-
-    if ! pgrep -u $USER -f offlineimap > /dev/null; then
-        echo "Starting offlineimap..."
-        nohup offlineimap 2>&1 >> "$HOME/.offlineimap.log" &
-    fi
+    _start_unless_running 0 0 "fetchmail" "-Fd" 300;
+    _start_unless_running 1 1 "offlineimap"
+#    _start_unless_running 1 0 "$HOME/.dropbox-dist/dropboxd"
 fi
 
 export EDITOR=emacsclient
