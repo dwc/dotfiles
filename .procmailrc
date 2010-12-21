@@ -215,6 +215,11 @@ Work/Web\ Administration/Domains/
 * ^Return-Path:.*owner-ap-assembly-l@lists\.ifas\.ufl\.edu
 Work/Web\ Administration/Lists/Academic\ And\ Professional\ Assembly/
 
+# UF Android list
+:0
+* ^Return-Path:.*owner-android-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Android/
+
 # UF Approval Customers list
 :0
 * ^Return-Path:.*owner-approval-customer-l@lists\.ufl\.edu
