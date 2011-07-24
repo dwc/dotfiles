@@ -250,6 +250,11 @@ Work/Web\ Administration/Lists/Central\ POSIX\ Services/
 * ^Return-Path:.*owner-cns-hosting-customer-l@lists\.ufl\.edu
 Work/Web\ Administration/Lists/CNS\ Hosting\ Customers/
 
+# Core IT Staff list
+:0
+* ^Return-Path:.*owner-core-it-staff-l@lists\.ufl\.edu
+Work/Web\ Administration/Lists/Core\ IT\ Staff/
+
 # DDD list
 :0
 * ^Return-Path:.*owner-ddd-l@lists\.ufl\.edu
