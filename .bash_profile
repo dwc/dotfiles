@@ -33,7 +33,7 @@ if [ -d "$HOME/local" ]; then
 fi
 
 # Keychain SSH management
-if [ -x "$(which keychain)" ]; then
+if which keychain > /dev/null 2>&1; then
     keychain id_rsa
     source ~/.keychain/${HOSTNAME}-sh
     [ -f ~/.keychain/${HOSTNAME}-sh-gpg ] && source ~/.keychain/${HOSTNAME}-sh-gpg
