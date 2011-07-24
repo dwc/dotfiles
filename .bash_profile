@@ -1,28 +1,19 @@
 # This file is sourced by bash for login shells.
 
-# Used to start Fetchmail and OfflineIMAP
+# Used to start Dropbox, Fetchmail, and OfflineIMAP
 function _start_unless_running() {
     local nohup="$1"; shift
-    local pgrep_full="$1"; shift
+    local pidfile="$1"; shift
     local daemon="$1"; shift
 
-    local pgrep_args="-u $USER"
-    if [ ${pgrep_full} ]; then
-        pgrep_args="${pgrep_args} -f"
-    fi
-
-    if ! pgrep ${pgrep_args} ${daemon} > /dev/null; then
-        echo "Starting ${daemon}..."
-
+    if [ -f "${pidfile}" ] && ! pgrep -u "${USER}" | grep "$(< ${pidfile})" > /dev/null; then
         if [ "${nohup}" == "1" ]; then
             echo "nohup"
-            nohup ${daemon} $@ 2>&1 >> "$HOME/.${daemon}.log" &
+            nohup ${daemon} $@ 2>&1 >> "$HOME/.$(basename ${daemon}).log" &
         else
             echo "hup"
             ${daemon} $@ &
         fi
-    else
-        echo "${daemon} already exists"
     fi
 }
 
@@ -50,9 +41,9 @@ fi
 
 # Fetchmail and OfflineIMAP
 if [ "$(hostname -s)" == "li3-126" ]; then
-    _start_unless_running 0 0 "fetchmail" "-Fd" 300;
-    _start_unless_running 1 1 "offlineimap"
-#    _start_unless_running 1 0 "$HOME/.dropbox-dist/dropboxd"
+    _start_unless_running 0 "$HOME/.fetchmail.pid" "fetchmail" "-Fd" 300
+    _start_unless_running 1 "$HOME/.offlineimap/pid" "offlineimap"
+    _start_unless_running 1 "$HOME/.dropbox/dropbox.pid" "$HOME/.dropbox-dist/dropboxd"
 fi
 
 export EDITOR=emacsclient
