@@ -8,18 +8,16 @@ function _start_unless_running() {
 
     if [ -f "${pidfile}" ] && ! pgrep -u "${USER}" | grep "$(< ${pidfile})" > /dev/null; then
         if [ "${nohup}" == "1" ]; then
-            echo "nohup"
             nohup ${daemon} $@ 2>&1 >> "$HOME/.$(basename ${daemon}).log" &
         else
-            echo "hup"
             ${daemon} $@ &
         fi
     fi
 }
 
+# Load in aliases, etc.
 [ -f ~/.bashrc ] && source ~/.bashrc
 
-# Load in aliases, etc.
 # MacPorts
 if [ -d /opt/local/bin ]; then
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -43,7 +41,11 @@ fi
 if [ "$(hostname -s)" == "li3-126" ]; then
     _start_unless_running 0 "$HOME/.fetchmail.pid" "fetchmail" "-Fd" 300
     _start_unless_running 1 "$HOME/.offlineimap/pid" "offlineimap"
-    _start_unless_running 1 "$HOME/.dropbox/dropbox.pid" "$HOME/.dropbox-dist/dropboxd"
+fi
+
+# Dropbox
+if [ $(which dropbox 2> /dev/null) ]; then
+    _start_unless_running 1 "$HOME/.dropbox/dropbox.pid" "dropbox"
 fi
 
 export EDITOR=emacsclient
