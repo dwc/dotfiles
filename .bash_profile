@@ -6,7 +6,7 @@ function _start_unless_running() {
     local pidfile="$1"; shift
     local daemon="$1"; shift
 
-    if [ -f "${pidfile}" ] && ! pgrep -u "${USER}" | grep "$(< ${pidfile})" > /dev/null; then
+    if [ ! -f "${pidfile}" ] || ( [ -f "${pidfile}" ] && ! pgrep -u "${USER}" | grep "$(< ${pidfile})" > /dev/null ); then
         if [ "${nohup}" == "1" ]; then
             nohup ${daemon} $@ 2>&1 >> "$HOME/.$(basename ${daemon}).log" &
         else
