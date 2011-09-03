@@ -60,15 +60,24 @@
       column-number-mode t
       compilation-window-height 20)
 
-;; Customizations
 (add-to-list 'load-path "~/.emacs.d")
 
+;; Themes
+(require 'zenburn)
+
+;; Customizations
 (setq custom-file "~/.emacs.d/customize")
 (load-file custom-file)
 
 ;; Modes
 (autoload 'tt-mode "tt-mode")
 (add-to-list 'auto-mode-alist '("\\.tt$" . tt-mode))
+
+(setq exec-path (cons (expand-file-name "~/.gems/bin") exec-path))
+(autoload 'sass-mode "sass-mode")
+(add-to-list 'auto-mode-alist '("\\.sass$" . sass-mode))
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
 
 (defun ebuild-mode ()
   (shell-script-mode)
