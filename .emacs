@@ -95,9 +95,7 @@
           '(lambda ()
              (c-set-style "java")))
 
-(add-hook 'php-mode-hook
-          '(lambda ()
-             (setq indent-tabs-mode t)))
+(setq php-mode-force-pear t)
 
 ;; Start server for client usage
 (server-start)
