@@ -62,9 +62,6 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-;; Themes
-(require 'zenburn)
-
 ;; Customizations
 (setq custom-file "~/.emacs.d/customize")
 (load-file custom-file)
