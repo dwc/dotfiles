@@ -67,6 +67,9 @@
 (load-file custom-file)
 
 ;; Modes
+(add-to-list 'auto-mode-alist '("\\.php\w?$" . php-mode))
+(autoload 'php-mode "php-mode" "PHP mode." t)
+
 (autoload 'tt-mode "tt-mode")
 (add-to-list 'auto-mode-alist '("\\.tt$" . tt-mode))
 
