@@ -45,7 +45,7 @@ fi
 
 # Dropbox
 if [ $(which dropbox 2> /dev/null) ]; then
-    _start_unless_running 1 "$HOME/.dropbox/dropbox.pid" "dropbox"
+    _start_unless_running 0 "$HOME/.dropbox/dropbox.pid" "dropbox" "start"
 fi
 
 export EDITOR=emacsclient
