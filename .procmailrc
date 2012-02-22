@@ -215,6 +215,11 @@ Work/Web\ Administration/Domains/
 * ^Return-Path:.*owner-ap-assembly-l@lists\.ifas\.ufl\.edu
 Work/Web\ Administration/Lists/Academic\ And\ Professional\ Assembly/
 
+# UF All IT list
+:0
+* ^TO_ALL_IT@mail\.ufl\.edu
+Work/Web\ Administration/Lists/All\ IT/
+
 # UF Android list
 :0
 * ^Return-Path:.*owner-android-l@lists\.ufl\.edu
