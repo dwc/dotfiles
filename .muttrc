@@ -10,4 +10,5 @@ source ~/.mutt/mailboxes
 source ~/.mutt/mailboxes.offlineimap
 source ~/.mutt/options
 source ~/.mutt/profile
+source ~/.mutt/smime
 source ~/.mutt/t-prot
