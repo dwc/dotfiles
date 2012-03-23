@@ -1,6 +1,6 @@
 # This file is sourced by bash for login shells.
 
-# Used to start Dropbox, Fetchmail, and OfflineIMAP
+# Used to start Dropbox, Fetchmail, etc.
 function _start_unless_running() {
     local nohup="$1"; shift
     local pidfile="$1"; shift
@@ -37,10 +37,9 @@ if which keychain > /dev/null 2>&1; then
     [ -f ~/.keychain/${HOSTNAME}-sh-gpg ] && source ~/.keychain/${HOSTNAME}-sh-gpg
 fi
 
-# Fetchmail and OfflineIMAP
+# Fetchmail
 if [ "$(hostname -s)" == "li3-126" ]; then
     _start_unless_running 0 "$HOME/.fetchmail.pid" "fetchmail" "-Fd" 300
-    _start_unless_running 1 "$HOME/.offlineimap/pid" "offlineimap"
 fi
 
 # Dropbox
