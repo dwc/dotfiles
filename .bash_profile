@@ -37,11 +37,6 @@ if which keychain > /dev/null 2>&1; then
     [ -f ~/.keychain/${HOSTNAME}-sh-gpg ] && source ~/.keychain/${HOSTNAME}-sh-gpg
 fi
 
-# Fetchmail
-if [ "$(hostname -s)" == "li3-126" ]; then
-    _start_unless_running 0 "$HOME/.fetchmail.pid" "fetchmail" "-Fd" 300
-fi
-
 # Dropbox
 if [ $(which dropbox 2> /dev/null) ]; then
     _start_unless_running 0 "$HOME/.dropbox/dropbox.pid" "dropbox" "start"
