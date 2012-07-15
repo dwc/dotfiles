@@ -24,10 +24,9 @@ if [ -d /opt/local/bin ]; then
     export MANPATH=/opt/local/share/man:$MANPATH
 fi
 
-# Perl
-if [ -d "$HOME/local" ]; then
+# Scripts
+if [ -d "$HOME/local/bin" ]; then
     export PATH=$HOME/local/bin:$PATH
-    export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib:$PERL5LIB
 fi
 
 # Keychain SSH management
