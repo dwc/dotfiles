@@ -84,3 +84,7 @@ psgrep() {
 backup() {
     sudo -H /root/backup-scripts/"$@"
 }
+
+locallib() {
+    eval $(perl -I"$1/lib/perl5" -Mlocal::lib="$1")
+}
