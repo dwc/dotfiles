@@ -60,7 +60,7 @@
       column-number-mode t
       compilation-window-height 20)
 
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;; Customizations
 (setq custom-file "~/.emacs.d/customize")
