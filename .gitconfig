@@ -1,0 +1,16 @@
+[user]
+	name = Daniel Westermann-Clark
+	email = dwc@pobox.com
+[github]
+	user = dwc
+[color]
+	ui = true
+[alias]
+	st = status
+	stat = status
+	ci = commit
+	di = diff
+[core]
+	excludesfile = ~/.gitignore_global
+[push]
+	default = simple
