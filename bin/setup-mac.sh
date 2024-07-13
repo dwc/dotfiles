@@ -4,6 +4,7 @@ brew install aspell && \
     brew install awscli && \
     brew install bartender && \
     brew install dropbox && \
+    brew install esphome && \
     brew install firefox && \
     brew install font-ibm-plex && \
     brew install google-chrome && \
