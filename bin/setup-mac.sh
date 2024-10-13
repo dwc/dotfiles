@@ -1,6 +1,7 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew install aspell && \
+    brew install amazon-workspaces && \
     brew install awscli && \
     brew install bartender && \
     brew install dropbox && \
@@ -13,6 +14,7 @@ brew install aspell && \
     brew install jq && \
     brew install keepassxc && \
     brew install libreoffice && \
+    brew install microsoft-office && \
     brew install md5sha1sum && \
     brew install scroll-reverser && \
     brew install signal && \
