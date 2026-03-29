@@ -19,6 +19,7 @@ brew install aspell && \
     brew install scroll-reverser && \
     brew install signal && \
     brew install slack && \
+    brew install tmux && \
     brew install tree && \
     brew install visual-studio-code && \
     brew install watch && \
