@@ -8,9 +8,9 @@ brew install aspell && \
     brew install esphome && \
     brew install firefox && \
     brew install font-ibm-plex && \
+    brew install ghostty && \
     brew install google-chrome && \
     brew install istat-menus && \
-    brew install iterm2 && \
     brew install jq && \
     brew install keepassxc && \
     brew install libreoffice && \
