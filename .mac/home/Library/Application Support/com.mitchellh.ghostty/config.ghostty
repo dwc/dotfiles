@@ -1,0 +1,14 @@
+font-family = "IBM Plex Mono"
+font-size = 16
+
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor,ssh-terminfo,ssh-env
+
+window-height = 24
+window-width = 80
+window-save-state = never
+
+theme = "Broadcast"
+
+macos-icon = retro
