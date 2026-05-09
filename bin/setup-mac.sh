@@ -7,7 +7,7 @@ brew install aspell && \
     brew install dropbox && \
     brew install esphome && \
     brew install firefox && \
-    brew install font-ibm-plex && \
+    brew install font-ibm-plex-mono && \
     brew install ghostty && \
     brew install google-chrome && \
     brew install istat-menus && \
