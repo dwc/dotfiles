@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; From http://emacs-fu.blogspot.com/2008/12/using-packages-functions-only-if-they.html
 (defmacro require-maybe (feature &optional file)
   "*Try to require FEATURE, but don't signal an error if `require' fails."
